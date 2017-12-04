@@ -412,32 +412,31 @@ function syncAndDiscoverDevices(token, success, failure) {
  **/
 function getSwitchableTraits(item) {
 	var traits = null;
-	if (item.type === 'Switch' ||
-			(item.type === 'Group' && item.groupType && item.groupType === 'Switch')) {
-		traits = [
-			'action.devices.traits.OnOff'
-			];
-	} else if (item.type === 'Dimmer' ||
-			(item.type === 'Group' && item.groupType && item.groupType === 'Dimmer')) {
-		traits = [
-			'action.devices.traits.Brightness',
-			//'setPercentage',
-			'action.devices.traits.OnOff'
-			];
-	} else if (item.type === 'Color' ||
-			(item.type === 'Group' && item.groupType && item.groupType === 'Color')) {
-		traits = [
-			'action.devices.traits.Brightness',
-			//'setPercentage',
-			'action.devices.traits.OnOff',
-			'action.devices.traits.ColorSpectrum'
-			];
-	} else if (item.type === 'Rollershutter' ||
-			(item.type === 'Group' && item.groupType && item.groupType === 'Rollershutter')) {
-		traits = [
-			//'setPercentage',
-			'action.devices.traits.Brightness'
-			];
+	if ((item.type == 'Group' && item.groupType) || item.type != 'Group') {
+		let type = item.groupType ? item.groupType : item.type
+		if (item.type === 'Switch') {
+			traits = [
+				'action.devices.traits.OnOff'
+				];
+		} else if (item.type === 'Dimmer') {
+			traits = [
+				'action.devices.traits.Brightness',
+				//'setPercentage',
+				'action.devices.traits.OnOff'
+				];
+		} else if (item.type === 'Color') {
+			traits = [
+				'action.devices.traits.Brightness',
+				//'setPercentage',
+				'action.devices.traits.OnOff',
+				'action.devices.traits.ColorSpectrum'
+				];
+		} else if (item.type === 'Rollershutter') {
+			traits = [
+				//'setPercentage',
+				'action.devices.traits.Brightness'
+				];
+		} 
 	}
 	return traits;
 }

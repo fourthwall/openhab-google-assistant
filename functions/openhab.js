@@ -233,7 +233,7 @@ function adjustTemperatureWithItems(authToken, params, currentTemperature, targe
 
 	log.debug('openhabGoogleAssistant - adjustTemperatureWithItems setValue: ' + setValue);
 
-	var curMode = utils.normalizeThermostatMode(heatingCoolingMode ? heatingCoolingMode.state : 'AUTO');
+	var curMode = heatingCoolingMode ? utils.normalizeThermostatMode(heatingCoolingMode.state) : 'AUTO';
 
 	var success = function (resp) {
 		var payload = {};

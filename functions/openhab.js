@@ -412,7 +412,7 @@ function syncAndDiscoverDevices(token, success, failure) {
  **/
 function getSwitchableTraits(item) {
 	var traits = null;
-	if ((item.type == 'Group' && item.groupType) || item.type != 'Group') {
+	if ((item.type === 'Group' && item.groupType) || item.type !== 'Group') {
 		let type = item.groupType ? item.groupType : item.type
 		if (type === 'Switch') {
 			traits = [
